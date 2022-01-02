@@ -1,0 +1,44 @@
+{
+  "name": "icue-controller",
+  "version": "1.0.0",
+  "description": "iCUE lighting controller",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "Tommy Skeffington",
+    "email": "tommy@skeffingtons.uk"
+  },
+  "keywords": [
+    "cue",
+    "icue",
+    "corsair",
+    "corsair icue",
+    "corsair utility engine",
+    "icue controller",
+    "controller",
+    "lighting controller",
+    "lighting",
+    "nodejs"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/tommyskeff/icue-controller/#readme",
+  "bugs": {
+    "url": "https://github.com/tommyskeff/icue-controller/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tommyskeff/icue-controller"
+  },
+  "dependencies": {
+    "cue-sdk": "^2.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  },
+  "files": [
+      "dist/",
+      "LICENSE",
+      "package.json",
+      "README.md"
+  ]
+}
