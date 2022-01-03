@@ -11,13 +11,25 @@ export class ErrorHandler {
         5: "The arguments provided were insufficient to the requested action.",
     };
 
+    /**
+     * Last error code (e.g. 3).
+     */
+    
     get code() {
         return SDK.CorsairGetLastError();
     }
 
+    /**
+     * Last error message (e.g. Failed to detect an instance of iCUE running or third party control is disabled in iCUE settings).
+     */
+
     get message() {
         return this.messages[SDK.CorsairGetLastError()];
     }
+
+    /**
+     * Throw error if last action failed.
+     */
 
     catchError() {
         if (this.code) {

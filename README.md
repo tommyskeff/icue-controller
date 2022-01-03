@@ -1,5 +1,5 @@
 # iCUE Controller
-Corsair iCUE lighting controller for NodeJS; a wrapper for the cue-sdk library (https://www.npmjs.com/package/cue-sdk).
+Corsair iCUE lighting controller for NodeJS; a wrapper for the cue-sdk library (https://www.npmjs.com/package/cue-sdk). Easily  control the lighting in your Corsair iCUE products through NodeJS, and act on macro key presses for compatible mice and keyboards.
 
 ## Prerequisites
 ### Windows
@@ -30,11 +30,12 @@ client.on("connect", () => {
 
     // Loop through connected devices
     devices.forEach(device => {
-        // Loop through LEDs in the device.
-        for (let i = 0; i < device.ledCount; i++) {
-            // Set LED colour
-            device.setColour(i, colour);
-        }
+        device.setColour(colour);
+
+        // Log macro presses on iCUE compatible keyboards/mice
+        device.on("macrodown", key => {
+            console.log(`Macro key ${key} was pressed!`);
+        });
     });
 
     // Push changes to LEDs

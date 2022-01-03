@@ -19,6 +19,10 @@ export class Client extends EventEmitter {
     private _details?: SDK.CorsairProtocolHandshake;
     private _devices: Device[] = [];
 
+    /**
+     * Initiate connection to iCUE server.
+     */
+
     public async connect() {
         var details = SDK.CorsairPerformProtocolHandshake();
         errorHandler.catchError();
@@ -58,6 +62,10 @@ export class Client extends EventEmitter {
         this.emit("connect");
         this._details = details;
     }
+
+    /**
+     * Get iCUE device from its ID.
+     */
 
     public findDevice(id: string) {
         return this._devices.find(d => d.id === id);
@@ -105,11 +113,23 @@ export class Client extends EventEmitter {
         this._devices = devices;
     }
 
+    /**
+     * Get iCUE devices of a certain type.
+     * 
+     * @param {DeviceType} type - Device type (e.g. KEYBOARD)
+     */
+
     public getDevices(type: DeviceType): ReadonlyArray<Device> {
         return this._devices.filter(d => d.type === DeviceType[type]);
     }
 
-    public update(devices: Device[]) {
+    /**
+     * Push colour modifications to LEDs.
+     * 
+     * @param {Device[]} [devices] - List of devices to update
+     */
+
+    public update(devices?: Device[]) {
         return new Promise<void>((resolve, reject) => {
             var count = SDK.CorsairGetDeviceCount();
             errorHandler.catchError();
@@ -120,7 +140,7 @@ export class Client extends EventEmitter {
                     return reject(errorHandler.message)
                 }
 
-                for (const device of this._devices) {
+                for (const device of devices ? devices : this._devices) {
                     if (info?.deviceId === device.id) {
                         SDK.CorsairSetLedsColorsBufferByDeviceIndex(i, device.transform());
                         if (errorHandler.code) {
@@ -137,9 +157,17 @@ export class Client extends EventEmitter {
         });
     }
 
+    /**
+     * Connection details to iCUE server.
+     */
+
     get connection() {
         return this._details;
     }
+
+    /**
+     * Devices currently connected to iCUE.
+     */
 
     get devices(): ReadonlyArray<Device> {
         return this._devices;

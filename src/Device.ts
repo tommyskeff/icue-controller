@@ -30,44 +30,89 @@ export class Device extends EventEmitter {
         }
     }
 
+    /**
+     * Convert LEDs data into iCUE compatible format.
+     */
+
     public transform() {
         return this._leds.map(led => led.transform());
     }
 
-    public setColour(id: number, colour: [number, number, number]) {
+    /**
+     * Set LED colour for entire device.
+     * 
+     * @param {[number, number, number]} colour - RGB colour to set LEDs
+     */
+
+    public setColour(colour: [number, number, number]) {
+        for (let i = 0; i < this.ledCount; i++) {
+            this.setLED(i, colour);
+        }
+    }
+
+    /**
+     * Set colour for specific LED.
+     * 
+     * @param {number} id - Index of LED
+     * @param {[number, number, number]} colour - RGB colour to set LED
+     */
+
+    public setLED(id: number, colour: [number, number, number]) {
         this._leds[id].colour = colour;
     }
 
-    public getColour(id: number) {
+    /**
+     * Get colour for specific LED.
+     * 
+     * @param {number} id - Index of LED
+     */
+
+    public getLED(id: number) {
         return this._leds[id].colour;
     }
 
-    public addChild(device: Device) {
-        this._children.push(device);
-    }
+    // public addChild(device: Device) {
+    //     this._children.push(device);
+    // }
+
+    /**
+     * Specific model of device (e.g. K55 RGB PRO).
+     */
 
     get model() {
         return this._model;
     }
 
+    /**
+     * Unique identifier for iCUE device (e.g. af010375236bc03b9026f443aa6dee1d)
+     */
+
     get id() {
         return this._id;
     }
+
+    /**
+     * Device type: Unknown, Mouse, Keyboard, Headset, MouseMat, HeadsetStand, Commander, LightingNode, Memory, Cooler, Motherboard or GraphicsCard.
+     */
 
     get type() {
         return DeviceType[this._type];
     }
 
+    /**
+     * LED count for device.
+     */
+
     get ledCount() {
         return this._leds.length;
     }
 
-    get children() : ReadonlyArray<Device> {
-        return this._children;
-    }
+    // get children(): ReadonlyArray<Device> {
+    //     return this._children;
+    // }
 
-    get parent() {
-        return this._parent;
-    }
+    // get parent() {
+    //     return this._parent;
+    // }
 
 }

@@ -19,6 +19,10 @@ export class LED {
         return colour;
     }
 
+    /**
+     * Convert LED data into iCUE compatible format.
+     */
+
     public transform(): SDK.CorsairLedColor {
         return {
             ledId: this._id,
@@ -28,9 +32,17 @@ export class LED {
         };
     }
 
+    /**
+     * Colour of LED in RGB (e.g. [255, 0, 255]).
+     */
+
     get colour() {
         return this._colour;
     }
+
+    /**
+     * Colour of LED in RGB (e.g. [255, 0, 255]).
+     */
 
     set colour(colour: [number, number, number]) {
         this._colour = this.parseColour(colour);
