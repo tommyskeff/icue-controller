@@ -33,12 +33,13 @@
     "cue-sdk": "^2.2.0"
   },
   "devDependencies": {
+    "@types/events": "^3.0.0",
     "typescript": "^4.5.4"
   },
   "files": [
-      "dist/",
-      "LICENSE",
-      "package.json",
-      "README.md"
+    "dist/",
+    "LICENSE",
+    "package.json",
+    "README.md"
   ]
 }
