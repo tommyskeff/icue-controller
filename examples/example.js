@@ -1,4 +1,4 @@
-const icue = require("../");
+const icue = require("cue-controller");
 const colour = [100, 0, 255];
 
 // Create new iCUE client
@@ -10,7 +10,7 @@ client.on("connect", () => {
 
     // Loop through connected devices
     devices.forEach(device => {
-        console.log(device.type, device.id);
+        // Set colour for all LEDs in device
         device.setColour(colour);
 
         // Log macro presses on iCUE compatible keyboards/mice
