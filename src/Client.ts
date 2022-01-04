@@ -84,17 +84,6 @@ export class Client extends EventEmitter {
             var leds = positions.map(p => p.ledId).sort((a, b) => a - b);
             var device = new Device(info.model, info.deviceId, info.type, leds);
 
-            // if (info.type === 7) {
-            //     for (const channel of info.channels) {
-            //         var led = 0;
-            //         for (const channelDevice of channel.devices) {
-            //             var child = new Device("Unknown", "None", 0, leds.slice(led, led + channelDevice.deviceLedCount), device);
-            //             device.addChild(child);
-            //             led += channelDevice.deviceLedCount;
-            //         }
-            //     }
-            // }
-
             devices.push(device);
         }
 

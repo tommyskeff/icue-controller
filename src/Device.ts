@@ -12,18 +12,14 @@ export class Device extends EventEmitter {
     private _id: string;
     private _type: number;
     private _leds: LED[];
-    private _children: Device[];
-    private _parent?: Device;
 
-    public constructor(model: string, id: string, type: number, ledIds: number[], parent?: Device) {
+    public constructor(model: string, id: string, type: number, ledIds: number[]) {
         super();
 
         this._model = model;
         this._id = id;
         this._type = type;
         this._leds = [];
-        this._children = [];
-        this._parent = parent;
 
         for (let i = 0; i < ledIds.length; i++) {
             this._leds.push(new LED(ledIds[i]))
@@ -106,13 +102,5 @@ export class Device extends EventEmitter {
     get ledCount() {
         return this._leds.length;
     }
-
-    // get children(): ReadonlyArray<Device> {
-    //     return this._children;
-    // }
-
-    // get parent() {
-    //     return this._parent;
-    // }
 
 }
