@@ -33,12 +33,6 @@ export class Client extends EventEmitter {
         SDK.CorsairSubscribeForEvents(e => {
             var event = <CorsairEvent>e;
             switch (event.id) {
-                // case "deviceconnect":
-                //     this.indexDevices();
-                //     this.emit("deviceconnect", this.findDevice(event.deviceId));
-                // case "devicedisconnect":
-                //     this.emit("devicedisconnect", this.findDevice(event.deviceId));
-                //     this._devices = this._devices.filter(d => d.id !== event.deviceId);
                 case "macrokeydown":
                     var device = this.findDevice(event.deviceId);
                     if (device !== undefined /* && device */) {
