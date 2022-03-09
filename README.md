@@ -18,8 +18,8 @@ npm i icue-controller
 ## Usage
 ### Example
 ```js
-const icue = require("cue-controller");
-const colour = [100, 0, 255];
+const icue = require("icue-controller");
+const colour = [100, 0, 255, 50];
 
 // Create new iCUE client
 var client = new icue.Client();
