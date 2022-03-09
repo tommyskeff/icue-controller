@@ -37,10 +37,10 @@ export class Device extends EventEmitter {
     /**
      * Set LED colour for entire device.
      * 
-     * @param {[number, number, number]} colour - RGB colour to set LEDs
+     * @param {[number, number, number]} colour - RGBA colour to set LEDs
      */
 
-    public setColour(colour: [number, number, number]) {
+    public setColour(colour: [number, number, number, number]) {
         for (let i = 0; i < this.ledCount; i++) {
             this.setLED(i, colour);
         }
@@ -50,10 +50,10 @@ export class Device extends EventEmitter {
      * Set colour for specific LED.
      * 
      * @param {number} id - Index of LED
-     * @param {[number, number, number]} colour - RGB colour to set LED
+     * @param {[number, number, number]} colour - RGBA colour to set LED
      */
 
-    public setLED(id: number, colour: [number, number, number]) {
+    public setLED(id: number, colour: [number, number, number, number]) {
         this._leds[id].colour = colour;
     }
 
@@ -66,10 +66,6 @@ export class Device extends EventEmitter {
     public getLED(id: number) {
         return this._leds[id].colour;
     }
-
-    // public addChild(device: Device) {
-    //     this._children.push(device);
-    // }
 
     /**
      * Specific model of device (e.g. K55 RGB PRO).
